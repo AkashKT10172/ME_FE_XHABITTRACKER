@@ -1,0 +1,9 @@
+.pieChart h2 {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 28px;
+    color: #fff;
+    font-style: italic;
+    margin-bottom: 10px;
+}
