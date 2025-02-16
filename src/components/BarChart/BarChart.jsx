@@ -14,7 +14,7 @@ import styles from "./BarChart.module.css";
 export default function BarChartComponent({ data }) {
   return (
     <div className={styles.expenseChart}>
-      <h2>Top Weekly Habits</h2>
+      <h2>Top Habits (Last Week)</h2>
 
       <div className={styles.barWrapper}>
         <ResponsiveContainer width="100%" height={280}>
