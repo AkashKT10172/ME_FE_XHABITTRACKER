@@ -38,8 +38,17 @@ export default function Home() {
   }, [habitList]);
 
   // Aggregate the counts of selected options (reading, exercise, meditation)
-  const today = new Date();
-  const day = today.getDate();
+
+  function isWithinThisWeek(startDateString, checkDateString) {
+    const startDate = new Date(startDateString);
+    const checkDate = new Date(checkDateString);
+
+    // Calculate 7 days before the start date
+    const pastDate = new Date(startDate);
+    pastDate.setDate(startDate.getDate() - 7); // Handles month/year transitions
+
+    return checkDate >= pastDate && checkDate <= startDate;
+  }
 
   const getTotalCountsWeekly = () => {
     let readingCount = 0;
@@ -47,9 +56,9 @@ export default function Home() {
     let meditationCount = 0;
 
     habitList.forEach(habit => {
-      const currentDay = habit.date.slice(8, 10);
-
-      if(day - 7 < currentDay) {
+      const currentDay = habit.date;
+      const today = new Date();
+      if(isWithinThisWeek(today, currentDay)) {
         if (habit.selectedOptions.reading) readingCount++;
         if (habit.selectedOptions.exercise) exerciseCount++;
         if (habit.selectedOptions.meditation) meditationCount++;
